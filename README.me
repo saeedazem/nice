@@ -54,23 +54,11 @@ Implement a basic CI/CD pipeline using Jenkins to automate the deployment of cha
    - Launch the instance.
 
 ### EC2 Requirements
-```
-curl -XGET http://localhost:1337/inventory
-```
-will yield the current sensors hostnames to monitor:
-```
-[
-    "sensor_1",
-    "sensor_2",
-    "sensor_12",
-    ...
-]
-```
 
 - Install git if you haven’t already:
 
 ```bash
-sudo yum install git
+`sudo yum install git`
 ```
 . code setup is at task1 code and by running terraform it will launch aws codedeploy.
 
