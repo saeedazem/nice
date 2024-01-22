@@ -33,6 +33,8 @@ Implement a basic CI/CD pipeline using Jenkins to automate the deployment of cha
 
 ## Solution For Task 2
 
+we will Deploy a Website from GitHub Repository to EC2 using CodeDeploy as the Deployment Service and Jenkins as the Pipeline.(take a look on screenshots screenshots/project-flow.png)
+
 ### EC2 Setup
 
 1. **Create an EC2 Instance with all the required resources.**
