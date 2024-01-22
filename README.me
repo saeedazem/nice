@@ -1,65 +1,65 @@
-Task 1: Infrastructure as Code
+# Task 1: Infrastructure as Code
 
-Scenario:
-Deploy a simple web application using AWS CloudFormation or Terraform.
-The application should consist of an EC2 instance hosting a static website (html file showing "hello world").
+## Scenario
 
-Requirements:
-Define necessary networking components (VPC, Subnets, Security Groups).
-Use a configuration management tool like AWS CloudFormation or Terraform.
-Ensure proper tagging and IAM roles for security.
+Deploy a simple web application using AWS CloudFormation or Terraform. The application should consist of an EC2 instance hosting a static website (html file showing "hello world").
 
-Deliverables:
-Share the code repository with your infrastructure code.
-Provide instructions for deploying and tearing down the infrastructure.
+## Requirements
 
+- Define necessary networking components (VPC, Subnets, Security Groups).
+- Use a configuration management tool like AWS CloudFormation or Terraform.
+- Ensure proper tagging and IAM roles for security.
 
-Task 2: CI/CD Setup
+## Deliverables
 
+- Share the code repository with your infrastructure code.
+- Provide instructions for deploying and tearing down the infrastructure.
 
-Scenario:
-Implement a basic CI/CD pipeline using Jenkins
-Automate the deployment of changes to your static website.
+# Task 2: CI/CD Setup
 
-Requirements:
-Connect your code repository to Jenkins
-Use Jenkins for building and deploying the website.
-Demonstrate a successful automated deployment.
+## Scenario
 
-Deliverables:
-Provide documentation on the CI/CD pipeline setup.
+Implement a basic CI/CD pipeline using Jenkins to automate the deployment of changes to your static website.
 
-Solution For Task2:
-EC2 Setup:
-. Create an EC2 Instance with all the required resources.
-. Create an IAM role with all the necessary policies(take a look on screenshot screenshots/iam-role-policies.png).
-Polices to be Added:
+## Requirements
 
--> AmazonEC2FullAccess
+- Connect your code repository to Jenkins.
+- Use Jenkins for building and deploying the website.
+- Demonstrate a successful automated deployment.
 
--> AmazonS3FullAccess
+## Deliverables
 
--> AWSCodeDeployFullAccess
+- Provide documentation on the CI/CD pipeline setup.
 
--> AWSCodeDeployRole
+## Solution For Task 2
 
-. Add the IAM role to the EC2 instance.
-. Jenkins runs on port 8080 (Default).
-. To allow traffic to these ports we have to modify the Inbound rules of EC2.
-. Select your EC2 instance -> Choose Security -> Scroll down to find Inbound Rules.
-. Click on a security group to open the rules page. Navigate to Inbound Rules and edit it(take a look on screenshot security-group-inboud-rules.png).
-. Add Source to Anywhere-IPv4 and add 0.0.0.0/0
-. Click on Save.
-. Launch the instance.
+### EC2 Setup
 
-### EC2 Requirements:
-. Install git if you haven’t already
+1. Create an EC2 Instance with all the required resources.
+2. Create an IAM role with the necessary policies (see [screenshot](screenshots/iam-role-policies.png)).
 
-```
+   Policies to be Added:
+   - AmazonEC2FullAccess
+   - AmazonS3FullAccess
+   - AWSCodeDeployFullAccess
+   - AWSCodeDeployRole
 
-sudo yum install git
-```
+3. Add the IAM role to the EC2 instance.
+4. Jenkins runs on port 8080 (Default).
+5. To allow traffic to these ports, modify the Inbound rules of EC2.
+   - Select your EC2 instance -> Choose Security -> Scroll down to find Inbound Rules.
+   - Click on a security group to open the rules page. Navigate to Inbound Rules and edit it (see [screenshot](screenshots/security-group-inboud-rules.png)).
+   - Add Source to Anywhere-IPv4 and add 0.0.0.0/0.
+   - Click on Save.
+   - Launch the instance.
 
+### EC2 Requirements
+
+- Install git if you haven’t already:
+
+   ```bash
+   sudo yum install git
+   ```
 . code setup is at task1 code and by running terraform it will launch aws codedeploy.
 
 Jenkins Installation:
