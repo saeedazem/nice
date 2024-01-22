@@ -33,7 +33,7 @@ Implement a basic CI/CD pipeline using Jenkins to automate the deployment of cha
 
 ## Solution For Task 2
 
-we will Deploy a Website from GitHub Repository to EC2 using CodeDeploy as the Deployment Service and Jenkins as the Pipeline.(see [screenshot] (screenshots/project-flow.png))
+we will Deploy a Website from GitHub Repository to EC2 using CodeDeploy as the Deployment Service and Jenkins as the Pipeline.(see [screenshot](screenshots/project-flow.png))
 
 ### EC2 Setup
 
@@ -102,7 +102,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ### Plugins Needed :
 
-- **AWS CodeDeploy** (see [screenshot] (screenshots/codedeploy-plugin.png))
+- **AWS CodeDeploy** (see [screenshot](screenshots/codedeploy-plugin.png))
 
 This plugin provides a **“post-build”** step for **AWS CodeDeploy**.
 - Click on **“Install”**.
@@ -111,21 +111,21 @@ This plugin provides a **“post-build”** step for **AWS CodeDeploy**.
 ### Jenkins Setup:
 
 - Click on **“New Item”**
-- Give it a name and select **“Freestyle Project”**, then click on **OK** (see [screenshot] (screenshots/freestyle-project.png))
-- Under Source Code Management, choose **“Git”** and provide your **repository URL** and the **Branch**.(see [screenshot] (screenshots/source-code-managment.png))
+- Give it a name and select **“Freestyle Project”**, then click on **OK** (see [screenshot](screenshots/freestyle-project.png))
+- Under Source Code Management, choose **“Git”** and provide your **repository URL** and the **Branch**.(see [screenshot](screenshots/source-code-managment.png))
 - Under Build Triggers select **“Poll SCM”** and under **Schedule** give the Cron Job value * * * * *
 - This checks the build **“every minute”**.
-- Under Post-build Actions select **“Deploy an application to AWS CodeDeploy”**.(see [screenshot] (screenshots/deploy-app-to-codedeploy.png))
+- Under Post-build Actions select **“Deploy an application to AWS CodeDeploy”**.(see [screenshot](screenshots/deploy-app-to-codedeploy.png))
 - Fill out the **Application, Deployment Group** and **Configuration Names** for the CodeDeploy which we created in the previous steps.
 - Give the desired AWS Region.
 - Give your Bucket name for **S3 Bucket** and leave **S3 Prefix** blank if there’s no other folders inside the bucket.
 
-- Click on Use **Access/Secret Keys** and enter it there.(see [screenshot] (screenshots/use-account-access-secret-key.png))
-- Click on Save, to **save** the build.(see [screenshot] (screenshots/example-of-codedeploy-conf-in-jenkins-post-build-actions.png))
+- Click on Use **Access/Secret Keys** and enter it there.(see [screenshot](screenshots/use-account-access-secret-key.png))
+- Click on Save, to **save** the build.(see [screenshot](screenshots/example-of-codedeploy-conf-in-jenkins-post-build-actions.png))
 
 - Come back to Dashboard and click on **Build Now**.
-- As we can see the build has been successfully executed.(see [screenshot] (screenshots/build-status.png), [screenshot] (screenshots/build-console-output.png))
-- If we **change the code in GitHub and commit the changes**, it triggers Jenkins then it pushes the changes to CodeDeploy. These changes are sent to EC2 server.(see [screenshot] (screenshots/build-console-output.png), [screenshot] (screenshots/build-console-output-scm.png))
-- The logs are sent to **S3 bucket** to which we have added it to CodeDeploy in Jenkins.(see [screenshot] (screenshots/s3-bucket-example.png))
+- As we can see the build has been successfully executed.(see [screenshot](screenshots/build-status.png), [screenshot](screenshots/build-console-output.png))
+- If we **change the code in GitHub and commit the changes**, it triggers Jenkins then it pushes the changes to CodeDeploy. These changes are sent to EC2 server.(see [screenshot](screenshots/build-console-output.png), [screenshot](screenshots/build-console-output-scm.png))
+- The logs are sent to **S3 bucket** to which we have added it to CodeDeploy in Jenkins.(see [screenshot](screenshots/s3-bucket-example.png))
 
 - **So when ever you update the source code of your webpage in your GitHub repository, it will be triggered and gets automatically updated then it reverts back to your webpage.**
