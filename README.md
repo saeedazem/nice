@@ -194,7 +194,7 @@ This plugin provides a **“post-build”** step for **AWS CodeDeploy**.
 
 - Come back to Dashboard and click on **Build Now**.
 - As we can see the build has been successfully executed.(see [screenshot](screenshots/build-status.png), [screenshot](screenshots/build-console-output.png))
-- If we **change the code in GitHub and commit the changes**, it triggers Jenkins then it pushes the changes to CodeDeploy. These changes are sent to EC2 server.(see [screenshot](screenshots/build-console-output.png), [screenshot](screenshots/build-console-output-scm.png))
+- If we **change the code in GitHub and commit the changes**, it triggers Jenkins then it pushes the changes to CodeDeploy. These changes are sent to EC2 server.(see [screenshot](screenshots/build-status-scm.png), [screenshot](screenshots/build-console-output-scm.png))
 - The logs are sent to **S3 bucket** to which we have added it to CodeDeploy in Jenkins.(see [screenshot](screenshots/s3-bucket-example.png))
 
 - **So when ever you update the source code of your webpage in your GitHub repository, it will be triggered and gets automatically updated then it reverts back to your webpage.**
