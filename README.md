@@ -132,7 +132,7 @@ we will Deploy a Website from GitHub Repository to EC2 using CodeDeploy as the D
     sudo yum install git
     ```
 
-- code setup is at task1 code and by running terraform it will launch aws codedeploy.
+- codedeploy setup is at task1 code and by running terraform it will launch aws codedeploy.
 
 ### Jenkins Installation:
 - **Navigate back to EC2 for the installation process.**
