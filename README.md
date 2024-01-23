@@ -71,6 +71,7 @@ terraform apply
 It will prompt you for confirmation so type yes, and press enter.
 
 - After a few minutes, your infrastructure will be deployed successfully. When the deployment is finished you can see all of your resources through the AWS console. To access your web server copy the DNS name of your load balancer and paste it into the browser and you should see the following output. It may take some time for EC2 user data script to be executed completely so please wait a few seconds.(see [screenshot](screenshots/web-server-page.png))
+- In case of any change in index.html file in github repository, codedeploy will automatically updates it in the running EC2's machines in our environment in aws.
 
 ## Terminate the Resources:
 
