@@ -15,6 +15,74 @@ Deploy a simple web application using AWS CloudFormation or Terraform. The appli
 - Share the code repository with your infrastructure code.
 - Provide instructions for deploying and tearing down the infrastructure.
 
+## Task 1: Solution
+
+## Terraform installation:
+To install the Terraform for your specific operating system refer to this documentation https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+
+## Architecting our application:
+We want the application to be highly available. To achieve high availability we can launch our EC2 instances in multiple Availability zones. Furthermore, autoscaling scaling and load-balancing would be required to achieve high availability. To satisfy these requirements we will use the following architecture(see [screenshot](nice-task1.webp)).
+
+## Files Related To The Task
+
+- main.tf:  will contain the main set of configuration for your module. 
+- variables.tf: will contain the variable definitions for your module. When your module is used by others, the variables will be configured as arguments in the module block. Since all Terraform values must be defined, any variables that are not given a default value will become required arguments. Variables with default values can also be provided as module arguments, overriding the default value.
+- index.html: is an HTML file that serves as the home page for a website. It's often the first file that visitors to a website will see. Usually, index.html is automatically opened when visitors enter the domain without specifying a specific file.
+- server.sh: a shell script to the EC2 instance using the user data. The user data script runs only once at the time of the instance launch. This user data can be provided using the ‘user_data’ attribute. The user data script needs to be base64 encoded that’s why we are using the filebase64() function of the Terraform. The ${path.module} variable points towards the current path of the Terraform directory. In the same directory, I have created a user data script named server.sh
+The EC2 user data script executes with the root permissions by default. Therefore we don’t need to add sudo.
+- appspec.yml: defines the deployment processes for aws codedeploy in our project
+it will help us with:
+    - Map the source files in your application revision to their destinations on the instance.
+    - Specify custom permissions for deployed files.
+    - Specify scripts to be run on each instance at various stages of the deployment process (hooks).
+The appspec.yaml is applicable whether doing blue/green or in-place deployment.
+- run_apache.sh: a shell script used by appspec.yml as a hook for application start
+
+## How To Run Terraform
+
+- run the following shell command inside the terminal.
+```
+terraform init
+```
+
+This command will download the provider that you’ve specified in the main.tf file.
+- After running the ‘terraform init’ command you will see that there is a new ‘.terraform’ hidden folder. This folder contains all the provider modules and configuration files. You should not make changes in this folder.
+- You need to specify the AWS region, AWS access key and AWS secret key inside the provider block like the following.
+```
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+```
+
+If you don’t want to hardcode the access key and secret key inside the Terraform file you can download the AWS CLI tool and configure the CLI tool using these keys. So at the runtime Terraform will dynamically get the keys from the ~/.aws/config file.
+
+- To check whether you have any syntactical mistakes in your file you can run the following command.
+```
+terraform plan
+```
+This will also give you an overview of the resource that needs to be created, modified or destroyed.
+- To deploy this Terraform configuration use the following command.
+```
+terraform apply
+```
+
+It will prompt you for confirmation so type yes, and press enter.
+
+- After a few minutes, your infrastructure will be deployed successfully. When the deployment is finished you can see all of your resources through the AWS console. To access your web server copy the DNS name of your load balancer and paste it into the browser and you should see the following output. It may take some time for EC2 user data script to be executed completely so please wait a few seconds.(see [screenshot](web-server-page.png))
+
+## Terminate the Resources:
+
+After provisioning the infrastructure, at some point, you may want to terminate all the resources that are created by the Terraform, to avoid a surprise bill from AWS. Terminating the resources is super easy in terraform. To terminate the resources use the following command and it will delete all the resources created by the Terraform.
+```
+terraform destroy
+```
+
+It will prompt you for confirmation so you need to type ‘yes’.
+
+
+
 # Task 2: CI/CD Setup
 
 ## Scenario
