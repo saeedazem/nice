@@ -21,7 +21,7 @@ Deploy a simple web application using AWS CloudFormation or Terraform. The appli
 To install the Terraform for your specific operating system refer to this documentation https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 ## Architecting our application:
-We want the application to be highly available. To achieve high availability we can launch our EC2 instances in multiple Availability zones. Furthermore, autoscaling scaling and load-balancing would be required to achieve high availability. To satisfy these requirements we will use the following architecture(see [screenshot](nice-task1.webp)).
+We want the application to be highly available. To achieve high availability we can launch our EC2 instances in multiple Availability zones. Furthermore, autoscaling scaling and load-balancing would be required to achieve high availability. To satisfy these requirements we will use the following architecture(see [screenshot](screenshots/nice-task1.webp)).
 
 ## Files Related To The Task
 
@@ -70,7 +70,7 @@ terraform apply
 
 It will prompt you for confirmation so type yes, and press enter.
 
-- After a few minutes, your infrastructure will be deployed successfully. When the deployment is finished you can see all of your resources through the AWS console. To access your web server copy the DNS name of your load balancer and paste it into the browser and you should see the following output. It may take some time for EC2 user data script to be executed completely so please wait a few seconds.(see [screenshot](web-server-page.png))
+- After a few minutes, your infrastructure will be deployed successfully. When the deployment is finished you can see all of your resources through the AWS console. To access your web server copy the DNS name of your load balancer and paste it into the browser and you should see the following output. It may take some time for EC2 user data script to be executed completely so please wait a few seconds.(see [screenshot](screenshots/web-server-page.png))
 
 ## Terminate the Resources:
 
